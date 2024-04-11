@@ -51,7 +51,11 @@ test("promise is an object with a then method", () => {
         expect(onRejected).toHaveBeenCalledTimes(1);
         expect(onFulfilled).toHaveBeenCalledTimes(0);
     })
-    test("the then method must return a promise",()=>{
+    test("then may be called multiple times on the same promise",()=>{
         
+    })
+    test("the then method must return a promise", () => {
+        const myPromise2 = new MyPromise()
+        expect(myPromise.then()).toBeInstanceOf(MyPromise)
     })
 })

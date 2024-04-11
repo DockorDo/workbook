@@ -55,7 +55,14 @@ test("promise is an object with a then method", () => {
         
     })
     test("the then method must return a promise", () => {
-        const myPromise2 = new MyPromise()
+        const myPromise = new MyPromise()
         expect(myPromise.then()).toBeInstanceOf(MyPromise)
+    })
+    test("then may be called multiple times on the same promise.",async ()=>{
+        const myPromise = new MyPromise((resolve,reject)=>{
+            resolve(1)
+        })
+       await expect( myPromise.then((res)=>res+1)).resolves.toEqual(2)
+       await expect( myPromise.then((res)=>res+1)).resolves.toEqual(2)
     })
 })
